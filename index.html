@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="home.css">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0; /* Remove default margin */
+            font-family: Arial, sans-serif; /* Set a default font */
+        }
+        nav {
+            background-color: #333; /* Dark background for nav */
+            overflow: hidden;       /* Clear floats */
+            position: sticky;       /* Keep nav at the top */
+            top: 0;                 /* Stick to the top */
+            width: 100%;            /* Full width */
+        }
+        nav button {
+            float: left;            /* Align buttons to the left */
+            background-color: #4CAF50; /* Green background */
+            color: white;              /* White text */
+            border: none;              /* No border */
+            padding: 10px 20px;       /* Padding for button */
+            cursor: pointer;           /* Pointer cursor on hover */
+            margin: 8px;              /* Margin around buttons */
+        }
+        nav button a {
+            text-decoration: none;     /* Remove underline from links */
+            color: white;              /* White text color */
+        }
+        nav button:hover {
+            background-color: #4592a0; /* Darker green on hover */
+        }
+        h1 {
+            margin-top: 60px; /* Add some space from the nav */
+        }
+    </style>
+    <script>
+        function navigateTo(page) {
+            window.location.href = page + '.html';
+        }
+    </script>
+</head>
+<body>
+    <nav>
+        <button onclick="navigateTo('index')">HOME</button>
+        <button onclick="navigateTo('coverpage')">ABOUT ME</button>
+        <button onclick="navigateTo('personal details')">PERSONAL DETAILS</button>
+        <button onclick="navigateTo('contacts')">CONTACT DETAILS</button>  
+        <button onclick="navigateTo('education')">EDUCATION</button>
+        <button onclick="navigateTo('work experience')">EXPERIENCE</button>
+        <button onclick="navigateTo('skills')">SKILLS</button>
+    </nav>
+    <h1>WELCOME TO THE WORLD OF WORK</h1>
+    <h2>THE BEST CURRICULUM VITAE YOU CAN TRUST</h2>
+    <h3>Hello!! I go by the name Ramushu Mohlahlathi Shaun</h3>
+    <p>I am new in this world of website creation. I'm driven by the passion for crafting invention and graphic designing.</p>
+</body>
+</html>

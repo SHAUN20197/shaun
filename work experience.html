@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .editable {
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 100%;
+            min-height: 100px;
+        }
+    </style>
+    <title>Document</title>
+    <link rel="stylesheet" href="home.css">
+    <style>
+      
+        body {
+            margin: 0; /* Remove default margin */
+            font-family: Arial, sans-serif; /* Set a default font */
+        }
+        nav {
+            background-color: #333; /* Dark background for nav */
+            overflow: hidden;       /* Clear floats */
+            position: sticky;       /* Keep nav at the top */
+            top: 0;                 /* Stick to the top */
+            width: 100%;            /* Full width */
+        }
+        nav button {
+            float: left;            /* Align buttons to the left */
+            background-color: #4CAF50; /* Green background */
+            color: white;              /* White text */
+            border: none;              /* No border */
+            padding: 10px 20px;       /* Padding for button */
+            cursor: pointer;           /* Pointer cursor on hover */
+            margin: 8px;              /* Margin around buttons */
+        }
+        nav button a {
+            text-decoration: none;     /* Remove underline from links */
+            color: white;              /* White text color */
+        }
+        nav button:hover {
+            background-color: #4595a0; /* Darker green on hover */
+        }
+        h1 {
+            margin-top: 60px; /* Add some space from the nav */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <button onclick="navigateTo('index')">HOME</button>
+        <button onclick="navigateTo('coverpage')">ABOUT ME</button>
+        <button onclick="navigateTo('personal details')">PERSONAL DETAILS</button>
+        <button onclick="navigateTo('contacts')">CONTACT DETAILS</button>  
+        <button onclick="navigateTo('education')">EDUCATION</button>
+        <button onclick="navigateTo('work experience')">EXPERIENCE</button>
+        <button onclick="navigateTo('skills')">SKILLS</button>
+    </nav>
+
+    <form id="contentForm">
+        <p contenteditable="true" class="editable" id="content">
+            From the onset of my career, I have been captivated by the intricacies of web development.
+            My proficiency in HTML, CSS, and JavaScript has allowed me to construct responsive and visually appealing websites.
+            I thrive on creating seamless user experiences, ensuring that every interaction is intuitive and engaging.
+            My understanding of CSS enables me to implement modern design principles, crafting interfaces that are not only functional but also aesthetically pleasing.
+            Moreover, my expertise in PHP and database management has empowered me to develop dynamic web applications.
+            By leveraging server-side scripting, I can create interactive features that respond to user input in real-time.
+            My experience in database management ensures that these applications are not only efficient but also scalable,
+            capable of handling increasing user demands without compromising performance.
+        </p>
+        <input type="hidden" name="content" id="hiddenContent">
+        <input type="button" value="Save Content" onclick="saveContent()">
+    </form>
+
+    <script>
+        function navigateTo(page) {
+            window.location.href = page + '.html';
+        }
+
+        function saveContent() {
+            const contentEditable = document.getElementById('content').innerText;
+            localStorage.setItem('savedContent', contentEditable);
+            alert('Content saved successfully!');
+        }
+
+        // Load saved content if available
+        window.onload = function() {
+            const savedContent = localStorage.getItem('savedContent');
+            if (savedContent) {
+                document.getElementById('content').innerText = savedContent;
+            }
+        };
+    </script>
+</body>
+</html>

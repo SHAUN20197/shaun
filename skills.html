@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Manager</title>
+    <link rel="stylesheet" href="home.css">
+    <style>
+        body {
+            margin: 0; /* Remove default margin */
+            font-family: Arial, sans-serif; /* Set a default font */
+        }
+        nav {
+            background-color: #333; /* Dark background for nav */
+            overflow: hidden;       /* Clear floats */
+            position: sticky;       /* Keep nav at the top */
+            top: 0;                 /* Stick to the top */
+            width: 100%;            /* Full width */
+        }
+        nav button {
+            float: left;            /* Align buttons to the left */
+            background-color: #4CAF50; /* Green background */
+            color: white;              /* White text */
+            border: none;              /* No border */
+            padding: 10px 20px;       /* Padding for button */
+            cursor: pointer;           /* Pointer cursor on hover */
+            margin: 8px;              /* Margin around buttons */
+        }
+        nav button a {
+            text-decoration: none;     /* Remove underline from links */
+            color: white;              /* White text color */
+        }
+        nav button:hover {
+            background-color: #4592a0; /* Darker green on hover */
+        }
+        h1 {
+            margin-top: 60px; /* Add some space from the nav */
+        }
+        .container {
+            padding: 20px; /* Add some padding */
+        }
+        #skillList {
+            list-style-type: none; /* Remove list bullets */
+            padding: 0; /* Remove padding */
+        }
+        #skillList li {
+            display: flex; /* Use flexbox for layout */
+            justify-content: flex-start; /* Align items to the start */
+            align-items: center; /* Center vertically */
+            margin: 10px 0; /* Margin for list items */
+        }
+        #skillList li .delete-button {
+            margin-left: 10px; /* Add a small space between the skill text and the delete button */
+        }
+    </style>
+    
+</head>
+<body>
+    <nav>
+        <button onclick="navigateTo('index')">HOME</button>
+        <button onclick="navigateTo('coverpage')">ABOUT ME</button>
+        <button onclick="navigateTo('personal details')">PERSONAL DETAILS</button>
+        <button onclick="navigateTo('contacts')">CONTACT DETAILS</button>  
+        <button onclick="navigateTo('education')">EDUCATION</button>
+        <button onclick="navigateTo('work experience')">EXPERIENCE</button>
+        <button onclick="navigateTo('skills')">SKILLS</button>
+    </nav>
+    <div class="container">
+        <h1>Skill Manager</h1>
+        <input type="text" id="skillInput" placeholder="Enter a skill" />
+        <input type="number" id="levelInput" value="1" min="1" placeholder="Skill Level" />
+        <button id="addSkillButton">Add Skill</button>
+        <ul id="skillList"></ul>
+    </div>
+    <script>
+        // Navigation function
+        function navigateTo(page) {
+            window.location.href = page + '.html';
+        }
+
+        // Load skills from local storage
+        function loadSkills() {
+            const skills = JSON.parse(localStorage.getItem('skills')) || [];
+            const skillList = document.getElementById('skillList');
+            skillList.innerHTML = ''; // Clear existing skills
+
+            skills.forEach(skill => {
+                const li = document.createElement('li');
+                li.setAttribute('data-id', skill.id);
+                li.innerHTML = `
+                    ${skill.skill}: ${skill.level}%
+                    <input type="number" class="levelInput" value="${skill.level}" min="1" style="display:none;" />
+                    <button class="update-button" style="display:none;">Update</button>
+                    <button class="delete-button">Delete</button>
+                `;
+                skillList.appendChild(li);
+            });
+        }
+
+        // Add a skill
+        document.getElementById('addSkillButton').onclick = function() {
+            const skillInput = document.getElementById('skillInput').value;
+            const levelInput = document.getElementById('levelInput').value;
+
+            if (skillInput && levelInput) {
+                const skills = JSON.parse(localStorage.getItem('skills')) || [];
+                const newSkill = {
+                    id: skills.length ? skills[skills.length - 1].id + 1 : 1,
+                    skill: skillInput,
+                    level: levelInput
+                };
+                skills.push(newSkill);
+                localStorage.setItem('skills', JSON.stringify(skills));
+                loadSkills();
+                document.getElementById('skillInput').value = '';
+                document.getElementById('levelInput').value = 1;
+            }
+        };
+
+        // Delete a skill
+        document.getElementById('skillList').onclick = function(event) {
+            if (event.target.classList.contains('delete-button')) {
+                const skillId = event.target.parentElement.getAttribute('data-id');
+                let skills = JSON.parse(localStorage.getItem('skills')) || [];
+                skills = skills.filter(skill => skill.id != skillId);
+                localStorage.setItem('skills', JSON.stringify(skills));
+                loadSkills();
+            }
+        };
+
+        // Load skills on page load
+        window.onload = loadSkills;
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+        

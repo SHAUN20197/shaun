@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Personal Information Form</title>
+  
+</head>
+<body>
+    <nav>
+        <button><a href="index.html">HOME</a></button>
+        <button><a href="coverpage.html">ABOUT ME</a></button>
+        <button><a href="personal details.html">PERSONAL DETAILS</a></button>
+        <button><a href="contacts.html">CONTACT DETAILS</a></button>  
+        <button><a href="education.html">EDUCATION</a></button>
+        <button><a href="work experience.html">EXPERIENCE</a></button>
+        <button><a href="skills.html">SKILLS</a></button>
+    </nav>
+    <form id="personalInfoForm">
+        <h3>PERSONAL INFORMATION</h3>
+        <label for="surname">SURNAME:</label><br>
+        <input type="text" id="surname" name="surname" value="RAMUSHU" required><br><br>
+        <label for="firstname">FIRST NAME:</label><br>
+        <input type="text" id="firstname" name="firstname" value="MOHLAHLATHI" required><br><br>
+        <label for="lastname">LAST NAME:</label><br>
+        <input type="text" id="lastname" name="lastname" value="SHAUN" required><br><br>
+        <label for="country">NATIONALITY:</label><br>
+        <input type="text" id="country" name="country" value="SOUTH AFRICAN" required><br><br>
+        <label for="sexuality">GENDER:</label><br>
+        <input type="text" id="sexuality" name="sexuality" value="MALE" required><br><br>
+        <label for="birthday">DATE OF BIRTH:</label><br>
+        <input type="date" id="birthday" name="birthday" value="2005-08-24" required><br><br>
+        <button type="submit">Submit</button><br><br>
+    </form>
+
+    <script>
+        // Load personal information from local storage
+        function loadPersonalInfo() {
+            const personalInfo = JSON.parse(localStorage.getItem('personalInfo'));
+            if (personalInfo) {
+                document.getElementById('surname').value = personalInfo.surname;
+                document.getElementById('firstname').value = personalInfo.firstname;
+                document.getElementById('lastname').value = personalInfo.lastname;
+                document.getElementById('country').value = personalInfo.country;
+                document.getElementById('sexuality').value = personalInfo.sexuality;
+                document.getElementById('birthday').value = personalInfo.birthday;
+            }
+        }
+
+        // Handle form submission
+        document.getElementById('personalInfoForm').onsubmit = function(event) {
+            event.preventDefault(); // Prevent form submission
+            const personalInfo = {
+                surname: document.getElementById('surname').value,
+                firstname: document.getElementById('firstname').value,
+                lastname: document.getElementById('lastname').value,
+                country: document.getElementById('country').value,
+                sexuality: document.getElementById('sexuality').value,
+                birthday: document.getElementById('birthday').value,
+            };
+            localStorage.setItem('personalInfo', JSON.stringify(personalInfo));
+            alert('Personal information saved successfully!');
+        };
+
+        // Load personal information on page load
+        window.onload = loadPersonalInfo;
+    </script>
+</body>
+</html>

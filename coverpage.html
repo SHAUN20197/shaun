@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Portfolio</title>
+    <link rel="stylesheet" href="home.css">
+   
+</head>
+
+<body>
+    <nav>
+        <button><a href="index.html">HOME</a></button>
+        <button><a href="coverpage.html">ABOUT ME</a></button>
+        <button><a href="personal details.html">PERSONAL DETAILS</a></button>
+        <button><a href="contacts.html">CONTACT DETAILS</a></button>  
+        <button><a href="education.html">EDUCATION</a></button>
+        <button><a href="work experience.html">EXPERIENCE</a></button>
+        <button><a href="skills.html">SKILLS</a></button>
+    </nav>
+
+    <h1>About Me</h1>
+    <div class="about-section">
+        <h2>Professional Background</h2>
+        <p>
+            My passion for coding and graphic design stems from the powerful intersection of technology and creativity.<br>
+            Coding allows me to solve complex problems and build innovative solutions,<br>
+            while graphic design enables me to visually communicate ideas and enhance user experiences.<br>
+            I love the challenge of translating abstract concepts into functional applications,<br>
+            and I find immense joy in creating visually appealing interfaces that not only engage users but also provide intuitive navigation.
+        </p>
+
+        <h2>Motivation and Support</h2>
+        <p>
+            My dedication to programming is greatly influenced by my parents,<br>
+            whose unwavering support has been invaluable in my journey.<br>
+            Their encouragement has been a driving force behind my passion for technology and design.
+        </p>
+
+        <h2>Current Goals</h2>
+        <p>
+            I am currently seeking new employment opportunities to enhance my skills and support myself academically.
+        </p>
+    </div>
+
+    <script>
+        // Example of JavaScript usage if needed for future enhancements
+        const aboutSections = document.querySelectorAll('.about-section h2');
+        aboutSections.forEach(section => {
+            section.addEventListener('click', () => {
+                section.nextElementSibling.classList.toggle('hidden');
+            });
+        });
+    </script>
+</body>
+
+</html>
+
+
+

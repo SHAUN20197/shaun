@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="home.css">
+    <title>Education Form</title>
+  
+</head>
+<body>
+    <nav>
+        <button><a href="index.html">HOME</a></button>
+        <button><a href="coverpage.html">ABOUT ME</a></button>
+        <button><a href="personal details.html">PERSONAL DETAILS</a></button>
+        <button><a href="contacts.html">CONTACT DETAILS</a></button>  
+        <button><a href="education.html">EDUCATION</a></button>
+        <button><a href="work experience.html">EXPERIENCE</a></button>
+        <button><a href="skills.html">SKILLS</a></button>
+    </nav>
+    <form id="educationForm">
+        <h3>EDUCATION:</h3>
+        <label for="higher_education">YOUR INSTITUTION:</label><br>
+        <input type="text" id="higher_education" name="higher_education" class="editable" value="UNIVERSITY OF LIMPOPO" required><br><br>
+        <label for="studies">DEGREE:</label><br>
+        <input type="text" id="studies" name="studies" class="editable" value="BSC IN FISHING" required><br><br>   
+        <label for="highschool">HIGH SCHOOL NAME:</label><br>
+        <input type="text" id="highschool" name="highschool" class="editable" value="MAHWETSE SECONDARY" required><br><br>
+        <label for="highestgrade">HIGHEST GRADE:</label><br>
+        <input type="number" id="highestgrade" name="highestgrade" class="editable" value="12" required><br><br>
+        <button type="submit">Submit</button><br><br>
+    </form>
+
+    <script>
+        // Load education information from local storage
+        function loadEducationInfo() {
+            const educationInfo = JSON.parse(localStorage.getItem('educationInfo'));
+            if (educationInfo) {
+                document.getElementById('higher_education').value = educationInfo.higher_education;
+                document.getElementById('studies').value = educationInfo.studies;
+                document.getElementById('highschool').value = educationInfo.highschool;
+                document.getElementById('highestgrade').value = educationInfo.highestgrade;
+            }
+        }
+
+        // Handle form submission
+        document.getElementById('educationForm').onsubmit = function(event) {
+            event.preventDefault(); // Prevent form submission
+            const educationInfo = {
+                higher_education: document.getElementById('higher_education').value,
+                studies: document.getElementById('studies').value,
+                highschool: document.getElementById('highschool').value,
+                highestgrade: document.getElementById('highestgrade').value,
+            };
+            localStorage.setItem('educationInfo', JSON.stringify(educationInfo));
+            alert('Education information saved successfully!');
+        };
+
+        // Load education information on page load
+        window.onload = loadEducationInfo;
+    </script>
+</body>
+</html>
+
